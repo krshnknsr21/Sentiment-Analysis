@@ -1,0 +1,69 @@
+<Movies_in@Screen>:
+    id: movie_screen
+    Label:
+        id: movies_in_label
+        gid: 'movies_in_label'
+        text: 'Output'
+        on_pos: app.register_widget(self)
+        pos_hint:{"center_x": .5, 'center_y': .3}
+        size_hint: .5, .5
+    
+    Button:
+        id: select_movie
+        text: 'Select Movie'
+        on_parent: self.parent.ids.dropdown.dismiss()
+        on_release: dropdown.open(self)
+        size_hint: .8, .1
+        pos_hint:  {"center_x": .5, "center_y": .7}
+
+        DropDown:
+            id: dropdown
+            on_select: select_movie.text = '{}'.format(args[1])
+
+            Button:
+                text: 'First Item'
+                size_hint_y: None
+                height: '50dp'
+                on_release: dropdown.select('First Item')
+
+            Button:
+                text: 'Second Item'
+                size_hint_y: None
+                height: '50dp'
+                on_release: dropdown.select('Second Item')
+
+            Button:
+                text: 'Third Item'
+                size_hint_y: None
+                height: '50dp'
+                on_release: dropdown.select('Third Item')
+
+            Button:
+                text: 'Fourth Item'
+                size_hint_y: None
+                height: '50dp'
+                on_release: dropdown.select('Fourth Item')
+
+            Button:
+                text: 'Fifth Item'
+                size_hint_y: None
+                height: '50dp'
+                on_release: dropdown.select('Fifth Item')
+
+            Button:
+                text: 'Sixth Item'
+                size_hint_y: None
+                height: '50dp'
+                on_release: dropdown.select('Sixth Item')
+
+            Button:
+                text: 'Seventh Item'
+                size_hint_y: None
+                height: '50dp'
+                on_release: dropdown.select('Seventh Item')
+
+            Button:
+                text: 'Eighth Item'
+                size_hint_y: None
+                height: '50dp'
+                on_release: dropdown.select('Eighth Item') 
