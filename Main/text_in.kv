@@ -1,17 +1,28 @@
 <Text_in@Screen>:
     id: text_screen
+    
     RelativeLayout:
+        
         TextInput:
             id: text_in_textinput
             size_hint: [.7, .1]
             pos_hint:  {"center_x": .45, "center_y": .65}
+        
         Button:
-            id: text_in_button
+            id: text_in_button_analyze
             text: 'text'
             size_hint: [.1, .1]
             pos_hint:  {"center_x": .85, "center_y": .65}
             on_press: app.process_text_in(text_in_textinput.text)
             #on_release: text_in_label.text = app.result()
+
+        Button:
+            id: text_in_button_clear
+            text: 'Clear'
+            size_hint: [.2, .1]
+            pos_hint:  {"center_x": .5, "center_y": .45}
+            on_press: root.ids.text_in_textinput.text = ''
+        
         Label:
             id: text_in_label
             gid: 'text_in_label'
@@ -19,3 +30,9 @@
             on_pos: app.register_widget(self)
             pos_hint:{"center_x": .5, 'center_y': .3}
             size_hint: .5, .5
+            # canvas:
+            #     Color:
+            #         rgb: (1,1,1,1)
+            #     Rectangle:
+            #         size: self.size
+            #         pos: self.pos

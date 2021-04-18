@@ -1,15 +1,29 @@
 <Voice_in@Screen>:
     id: 'voice_screen'
-    canvas:
-        Color:
-            rgb: (1,0,0,1)
-        RoundedRectangle:
-            size: self.size
-            pos: self.pos
-            radius: 200, 200, 200, 200
+    # canvas:
+    #     Color:
+    #         rgb: (1,1,1,1)
+    #     Rectangle:
+    #         size: self.size
+    #         pos: self.pos
 
     FloatLayout:
         Button:
             text: 'Start Record'
             size_hint: .2, .2
             pos_hint: {'center_x': .5, 'center_y': .7}
+
+        Label:
+            id: voice_in_label
+            gid: 'voice_in_label'
+            text: 'Output'
+            on_pos: app.register_widget(self)
+            pos_hint:{"center_x": .5, 'center_y': .3}
+            size_hint: .5, .5
+            # canvas:
+            #     Color:
+            #         rgb: (1,1,1,1)
+            #     Rectangle:
+            #         size: self.size
+            #         pos: self.pos
+                
