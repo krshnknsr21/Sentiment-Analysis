@@ -6,10 +6,10 @@ But there isnt really sufficient dramatic tension or emotional involvement to ke
 analysis = TextBlob(line)
 
 
-if analysis.sentiment.polarity > 0.3:
+if analysis.sentiment.polarity > 0.15:
     print("Positive")
 
-elif analysis.sentiment.polarity <= 0:
+elif analysis.sentiment.polarity <= 0.1:
     print("Negative")
 else:
     print("Neutral")
