@@ -1,3 +1,4 @@
+import sys
 import kivy
 kivy.require('2.0.0')
 

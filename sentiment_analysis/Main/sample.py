@@ -1,6 +1,5 @@
 import pymysql
 
-
 def mysqlconnect():
     # To connect MySQL database
     conn = pymysql.connect(
@@ -21,5 +20,5 @@ def mysqlconnect():
 
 
 # Driver Code
-if __name__ == "__main__":
-    mysqlconnect()
+# if __name__ == "__main__":
+#     mysqlconnect()
