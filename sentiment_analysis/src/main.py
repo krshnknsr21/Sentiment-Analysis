@@ -1,6 +1,5 @@
-import sys
 import kivy
-kivy.require('2.0.0')
+kivy.require('2.0.0') 
 
 from kivy.app import App
 from kivy.lang import Builder
@@ -15,6 +14,8 @@ Builder.load_file('voice_in.kv')
 Builder.load_file('movies_in.kv')
 Builder.load_file('nav_bar.kv')
 Builder.load_file('main_window.kv')
+
+Function_files.apply.printName()
 
 class Analyze(AnchorLayout):
     pass
