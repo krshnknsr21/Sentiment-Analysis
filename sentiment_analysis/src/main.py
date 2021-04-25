@@ -15,7 +15,7 @@ Builder.load_file('movies_in.kv')
 Builder.load_file('nav_bar.kv')
 Builder.load_file('main_window.kv')
 
-Function_files.apply.printName()
+#Function_files.apply.printName()
 
 class Analyze(AnchorLayout):
     pass
