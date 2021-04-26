@@ -2,6 +2,11 @@
     id: text_screen
     
     RelativeLayout:
+        canvas.before:
+            BorderImage:
+                source: 'Images/back.png'
+                pos: self.pos
+                size: self.size
         
         TextInput:
             id: text_in_textinput

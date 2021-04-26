@@ -1,5 +1,6 @@
 import kivy
-kivy.require('2.0.0') 
+kivy.require('2.0.0')
+import SampleAnalysis as process
 
 from kivy.app import App
 from kivy.lang import Builder
@@ -9,11 +10,11 @@ from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
 
-Builder.load_file('text_in.kv') 
-Builder.load_file('voice_in.kv')
-Builder.load_file('movies_in.kv')
-Builder.load_file('nav_bar.kv')
-Builder.load_file('main_window.kv')
+Builder.load_file('Kivy_files/text_in.kv') 
+Builder.load_file('Kivy_files/voice_in.kv')
+Builder.load_file('Kivy_files/movies_in.kv')
+Builder.load_file('Kivy_files/nav_bar.kv')
+Builder.load_file('Kivy_files/main_window.kv')
 
 #Function_files.apply.printName()
 
@@ -40,7 +41,7 @@ class AnalyzeApp(App):
         return Analyze()
     
     def process_text_in(self, text):
-        self.get_widget('text_in_label').text = text 
+        self.get_widget('text_in_label').text =  process.testAnalyze(text)
 
 
 if __name__ == "__main__":
