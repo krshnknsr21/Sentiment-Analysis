@@ -2,7 +2,7 @@ from textblob import TextBlob
 
 
 class Analyzer():
-    def testAnalyze(self, input):
+    def testAnalyze(input):
         analysis = TextBlob(input)
 
         if analysis.sentiment.polarity > 0.15:
@@ -18,5 +18,6 @@ class Analyzer():
             return "Neutral"
 
 
-p = Analyzer.testAnalyze('Good Morning')
-print(p)
+if __name__ == "__main__":
+    p = Analyzer.testAnalyze('Good Morning')
+    print(p)

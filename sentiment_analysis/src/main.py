@@ -1,6 +1,7 @@
 import kivy
 kivy.require('2.0.0')
-import SampleAnalysis as process
+import Text_Voice_Input as process_text
+import Movie_Review as process_movies
 
 from kivy.app import App
 from kivy.lang import Builder
@@ -15,8 +16,6 @@ Builder.load_file('Kivy_files/voice_in.kv')
 Builder.load_file('Kivy_files/movies_in.kv')
 Builder.load_file('Kivy_files/nav_bar.kv')
 Builder.load_file('Kivy_files/main_window.kv')
-
-#Function_files.apply.printName()
 
 class Analyze(AnchorLayout):
     pass
@@ -41,7 +40,10 @@ class AnalyzeApp(App):
         return Analyze()
     
     def process_text_in(self, text):
-        self.get_widget('text_in_label').text =  process.testAnalyze(text)
+        self.get_widget('text_in_label').text =  process_text.Analyzer.testAnalyze(text)
+
+    def process_movies_in(self, text):
+        self.get_widget('movies_in_label').text =  process_movies.MovieReviewAnalyzer.reviewAnalyzer(text)
 
 
 if __name__ == "__main__":

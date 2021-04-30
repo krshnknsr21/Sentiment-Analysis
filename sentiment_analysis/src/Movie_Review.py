@@ -53,10 +53,12 @@ class MovieReviewAnalyzer():
             else:
                 print("Theres 50% Chance You Will Like this Movie")
 
-        print("Movie : ", n)
-        print(pos, neg, nu,)
+        x = "Movie : " + str(n) + str(pos) + str(neg) + str(nu)
+        print(x)
+        return x
+        #print(pos, neg, nu,)
         # To close the connection
         conn.close()
 
 
-x = MovieReviewAnalyzer.reviewAnalyzer('Joker')
+#x = MovieReviewAnalyzer.reviewAnalyzer('The Shawshank Redemption')
