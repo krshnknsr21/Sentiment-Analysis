@@ -1,6 +1,5 @@
 from textblob import TextBlob
 
-
 class Analyzer():
     def testAnalyze(input):
         analysis = TextBlob(input)
@@ -17,7 +16,7 @@ class Analyzer():
             # print("Neutral")
             return "Neutral"
 
-
+#for testing purposes
 if __name__ == "__main__":
     p = Analyzer.testAnalyze('Good Morning')
     print(p)

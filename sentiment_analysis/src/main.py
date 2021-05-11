@@ -1,7 +1,7 @@
 import kivy
 kivy.require('2.0.0')
-import Text_Voice_Input as process_text
-import Movie_Review as process_movies
+from Function_Files.Text_Input import Analyzer
+from Function_Files.Movie_Review import MovieReviewAnalyzer
 
 from kivy.app import App
 from kivy.lang import Builder
@@ -21,8 +21,7 @@ class Analyze(AnchorLayout):
     pass
 
 class AnalyzeApp(App):
-    analysis = ['hello']
-
+    
     global_widgets = {}
     ''' interface for  global widget access '''
     def register_widget(self, widget_object):
@@ -40,10 +39,10 @@ class AnalyzeApp(App):
         return Analyze()
     
     def process_text_in(self, text):
-        self.get_widget('text_in_label').text =  process_text.Analyzer.testAnalyze(text)
+        self.get_widget('text_in_label').text = Analyzer.testAnalyze(text)
 
     def process_movies_in(self, text):
-        self.get_widget('movies_in_label').text =  process_movies.MovieReviewAnalyzer.reviewAnalyzer(text)
+        self.get_widget('movies_in_label').text = MovieReviewAnalyzer.reviewAnalyzer(text)
 
 
 if __name__ == "__main__":
