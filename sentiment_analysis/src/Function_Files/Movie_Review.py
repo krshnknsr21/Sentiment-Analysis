@@ -19,6 +19,7 @@ class MovieReviewAnalyzer():
         pos = 0
         neg = 0
         nu = 0
+        x=[{},""]
         for i in output:
             # print(i[0]+"\n\n")
             analysis = TextBlob(i[0])
@@ -36,24 +37,32 @@ class MovieReviewAnalyzer():
 
         if neg < pos and pos >= nu and (pos-neg) > 4:
             print("Excellent")
-
+            x[1] = "Excellent"
         elif neg > pos and neg >= nu and (neg-pos) > 4:
             print("Poor")
+            x[1] = "Poor"
 
         else:
             if pos == neg:
                 print("Theres 50% Chance You Will Like this Movie")
+                x[1] = "Theres 50% Chance You Will Like this Movie"
 
             elif (pos+nu) > neg:
                 print("Good")
+                x[1] = "Good"
 
             elif (neg+nu) > pos:
                 print("Bad, But Watchable")
+                x[1] = "Bad, But Watchable"
 
             else:
                 print("Theres 50% Chance You Will Like this Movie")
+                x[1] = "Theres 50% Chance You Will Like this Movie"
 
-        x = "Movie : " + str(n) + str(pos) + str(neg) + str(nu)
+        x[0] = {"Positive Reviews":pos,# [.1, .7, .3, 1]),
+                "Negative Reviews":neg,# [.9, .1, .1, 1]),
+                "Neutral Reviews":nu# [.5, .5, .5, 1])
+               }
         print(x)
         return x
         #print(pos, neg, nu,)

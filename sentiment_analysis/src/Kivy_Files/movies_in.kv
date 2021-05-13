@@ -1,17 +1,29 @@
-<Movies_in@Screen>:
+<Movies_in@RelativeLayout>:
     id: movie_screen
     canvas.before:
+        Color:
+            rgb: (160/255,160/255,160/255,1)
         BorderImage:
             source: 'Images/movies.jpg'
             pos: self.pos
             size: self.size
     Label:
         id: movies_in_label
-        gid: 'movies_in_label'
         text: 'Output'
-        on_pos: app.register_widget(self)
         pos_hint:{"center_x": .5, 'center_y': .3}
         size_hint: .5, .1
+
+    # Label:
+    #     id: pie_chart
+    #     canvas:
+    #         Color:
+    #             rgb: 1, 1, 1
+    #         Ellipse:
+    #             pos: 100, 160
+    #             size: 200, 200
+    #             source: 'Images/mic.png'
+    #             angle_start: 0#app.input_angle_start()
+    #             angle_end: 360#app.input_angle_end()
 
     Button:
         id: select_movie
@@ -19,7 +31,7 @@
         on_parent: self.parent.ids.dropdown.dismiss()
         on_release: dropdown.open(self)
         size_hint: .8, .1
-        pos_hint:  {"center_x": .5, "center_y": .7}
+        pos_hint:  {"center_x": .5, "center_y": .9}
 
         DropDown:
             id: dropdown

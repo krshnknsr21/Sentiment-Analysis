@@ -1,10 +1,37 @@
-<Analyze>:
-    BoxLayout: 
-        orientation: 'vertical' 
-        Nav_Bar:
-            id: _nav_bar
-            size_hint: 1, .1
+BoxLayout:
+    orientation: 'vertical'
 
-        Main_Window:
-            id: _main_window
-            size_hint: 1, .9
+    MDToolbar:
+        id: toolbar
+        title: "Sentiment Analysis"
+        md_bg_color: (101/255,97/255,125/255,1)
+        specific_text_color: 1,1,1,1
+        #left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
+
+    MDBottomNavigation:
+        #color stuff
+        panel_color: (101/255,97/255,125/255,1)
+
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: "Text Input"
+            icon: 'text'
+
+            Text_in:
+                id: text_screen
+            
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: "Movie Reviews"
+            icon: 'movie'
+
+            Movies_in:
+                id: movie_screen
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: "Voice Input"
+            icon: 'microphone'
+
+            Voice_in:
+                id: voice_screen

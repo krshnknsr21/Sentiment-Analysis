@@ -1,28 +1,35 @@
 <Voice_in@Screen>:
     id: 'voice_screen'
     canvas.before:
+        Color:
+            rgb: (160/255,160/255,160/255,1)
         BorderImage:
             source: 'Images/voice.jpg'
             pos: self.pos
             size: self.size
     # canvas.before:
-    #     Color:
-    #         rgb: (1,1,1,1)
+    #     
     #     Rectangle:
     #         size: self.size
     #         pos: self.pos
 
     FloatLayout:
         Button:
-            text: 'Start Record'
+            #text: 'Start Record'
             size_hint: .2, .2
             pos_hint: {'center_x': .5, 'center_y': .7}
+            background_color: 0,0,0,0
+            Image:
+                id: my_image
+                source: 'Images/mic.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+                size: self.width, self.height
+        
 
         Label:
             id: voice_in_label
-            gid: 'voice_in_label'
             text: 'Output'
-            on_pos: app.register_widget(self)
             pos_hint:{"center_x": .5, 'center_y': .3}
             size_hint: .5, .5
             # canvas:
