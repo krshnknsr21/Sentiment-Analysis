@@ -19,21 +19,17 @@ class MovieReviewAnalyzer():
         pos = 0
         neg = 0
         nu = 0
-        x=[{},""]
+        x = [{},""]
         for i in output:
-            # print(i[0]+"\n\n")
             analysis = TextBlob(i[0])
             if analysis.sentiment.polarity > 0.15:
                 pos += 1
-                #print("\n", i[0])
 
             if analysis.sentiment.polarity <= 0.1:
                 neg += 1
-                #print("\n", i[0])
 
             if analysis.sentiment.polarity > 0.1 and analysis.sentiment.polarity <= 0.15:
                 nu += 1
-                #print("\n", i[0])
 
         if neg < pos and pos >= nu and (pos-neg) > 4:
             print("Excellent")
@@ -59,15 +55,12 @@ class MovieReviewAnalyzer():
                 print("Theres 50% Chance You Will Like this Movie")
                 x[1] = "Theres 50% Chance You Will Like this Movie"
 
-        x[0] = {"Positive Reviews":pos,# [.1, .7, .3, 1]),
-                "Negative Reviews":neg,# [.9, .1, .1, 1]),
-                "Neutral Reviews":nu# [.5, .5, .5, 1])
+        x[0] = {"Positive Reviews":pos,
+                "Negative Reviews":neg,
+                "Neutral Reviews":nu
                }
         print(x)
         return x
-        #print(pos, neg, nu,)
+
         # To close the connection
         conn.close()
-
-
-#x = MovieReviewAnalyzer.reviewAnalyzer('The Shawshank Redemption')

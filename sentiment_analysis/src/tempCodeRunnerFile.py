@@ -1,3 +1,10 @@
-yellow background to check widgets size and position
-        with self.canvas:
-           Rectangle(pos=self.pos, size=self.size, color=Color(1, 1, 0, 0.5))
+class CustomLabel(Label):
+    start_value = NumericProperty(0)
+    end_value = NumericProperty(0)
+    
+    def draw_pie(self, pos_data):
+        x = int((pos_data/30)*360)
+        self.end_value = x
+    
+    def update(self):
+        return 150
