@@ -1,14 +1,15 @@
 #:import utils kivy.utils
+#utils.get_color_from_hex('9FEBEC')
 <Text_in@RelativeLayout>:
     id: text_screen
     canvas.before:
         Color:
             rgb: (160/255,160/255,160/255,1)
         BorderImage:
-            source: 'Images/back.png'
+            source: 'Images/blue.png'
             pos: self.pos
             size: self.size
-    
+
     CustomTextInput:
         id: text_in_textinput
         foreground_color: self._foreground_color
@@ -16,6 +17,7 @@
         hint_text: "Enter Your Sentence Here"
         size_hint: [.7, .2]
         pos_hint:  {"center_x": .5, "center_y": .75}
+        font_size: 25
         #height: dp(35)
     # TextInput:
     #     id: text_in_textinput
@@ -25,29 +27,32 @@
     #     background_color: 0,0,0,0#utils.get_color_from_hex('9FEBEC')
     #     foreground_color: utils.get_color_from_hex('9FEBEC')
 
-    Button:
+    CustomButton:
         id: text_in_button_analyze
-        text: 'Analyze\n   Text'
+        text: 'Analyze Text'
         #text_color: (160/255,160/255,160/255,1)
         size_hint: [.2, .1]
         pos_hint:  {"x": .25, "center_y": .55}
         on_press: app.process_text_in(text_in_textinput.text)
-        #on_release: text_in_label.text = app.result()
+        background_normal: ''
+        background_color: utils.get_color_from_hex('51c4d3')
+        #on_press: self.background_color = utils.get_color_from_hex('51c4d3')
 
-    Button:
+    CustomButton:
         id: text_in_button_clear
         text: 'Clear'
         size_hint: [.2, .1]
         pos_hint:  {"x": .55, "center_y": .55}
         on_press: root.ids.text_in_textinput.text = ''
-    
-    Label:
+
+    CustomTextLabel:
         id: text_in_label
-        text: 'Output'
+        text: ''
         pos_hint:{"center_x": .5, 'center_y': .25}
         size_hint: .7, .2
-        font_size: 65
-        #foreground_color: (1,1,1,1)
+        font_size: 45
+        halign: 'center'
+        color: self.rgb_color
         # background_normal: ''
         # background_color: utils.get_color_from_hex('9FEBEC')
         # canvas:
@@ -78,3 +83,13 @@
 
     backgraund_normal: ''
     background_active: ''
+
+<CustomButton@MDRectangleFlatButton>:
+    text_color: utils.get_color_from_hex('ffffff')
+    line_color: utils.get_color_from_hex('51c4d3')
+    md_bg_color: utils.get_color_from_hex('51c4d3')
+    font_size: 20
+
+<CustomLabel>:
+
+<CustomTextLabel>:

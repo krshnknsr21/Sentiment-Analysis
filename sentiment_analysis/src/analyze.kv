@@ -1,16 +1,19 @@
+#:import utils kivy.utils
+#utils.get_color_from_hex('9FEBEC')
+#(101/255,97/255,125/255,1)
 BoxLayout:
     orientation: 'vertical'
 
     MDToolbar:
         id: toolbar
         title: "Sentiment Analysis"
-        md_bg_color: (101/255,97/255,125/255,1)
+        #md_bg_color: utils.get_color_from_hex('9A8E5E')
         specific_text_color: 1,1,1,1
         #left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
 
     MDBottomNavigation:
         #color stuff
-        panel_color: (101/255,97/255,125/255,1)
+        #panel_color: utils.get_color_from_hex('9A8E5E')
 
         MDBottomNavigationItem:
             name: 'screen 1'
@@ -19,7 +22,7 @@ BoxLayout:
 
             Text_in:
                 id: text_screen
-            
+
         MDBottomNavigationItem:
             name: 'screen 2'
             text: "Movie Reviews"

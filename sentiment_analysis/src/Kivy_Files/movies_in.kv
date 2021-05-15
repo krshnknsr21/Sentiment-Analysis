@@ -1,24 +1,49 @@
-#:set end_val 0
-<Movies_in@FloatLayout>:
+#:import utils kivy.utils
+#utils.get_color_from_hex('9FEBEC')
+<Movies_in@RelativeLayout>:
+    dropdown: dropdown.__self__
     id: movie_screen
     canvas.before:
         Color:
             rgb: (160/255,160/255,160/255,1)
         BorderImage:
-            source: 'Images/movies.jpg'
+            source: 'Images/blue.png'
             pos: self.pos
             size: self.size
 
-    
+    Label:
+        id: review_legend_pos
+        text: ''
+        pos_hint:{"center_x": .65, 'center_y': .70}
+        font_size: 20
+        halign: 'center'
+        color: 0,1,0,1
+
+    Label:
+        id: review_legend_neg
+        text: ''
+        pos_hint:{"center_x": .65, 'center_y': .55}
+        font_size: 20
+        halign: 'center'
+        color: 1,0,0,1
+
+    Label:
+        id: review_legend_neu
+        text: ''
+        pos_hint:{"center_x": .65, 'center_y': .40}
+        font_size: 20
+        halign: 'center'
+        color: 0.5,0.5,0.5,1
+
     Label:
         id: movies_in_label
         text: 'Output'
-        pos_hint:{"center_x": .5, 'center_y': .3}
+        pos_hint:{"center_x": .5, 'center_y': .15}
         size_hint: .5, .1
+        font_size: 30
 
     CustomLabel:
         id: pie_chart_pos
-        #text: '50'
         foreground_color: (0,0,0,0)
         canvas:
             Color:
@@ -27,12 +52,12 @@
                 id: ellipsee
                 pos: 100, 160
                 size: 200, 200
-                angle_start: 0
+                angle_start: self.start_value
                 angle_end: self.end_value
-    
+
     CustomLabel:
         id: pie_chart_neg
-        #text: '50'
+        pos_hint: {"center_x": .5, 'center_y': .5}
         foreground_color: (0,0,0,0)
         canvas:
             Color:
@@ -46,7 +71,6 @@
 
     CustomLabel:
         id: pie_chart_nu
-        #text: '50'
         foreground_color: (0,0,0,0)
         canvas:
             Color:
@@ -55,92 +79,121 @@
                 id: ellipsee
                 pos: 100, 160
                 size: 200, 200
-                angle_start: self.def_value
-                angle_end: 360
+                angle_start: self.start_value
+                angle_end: self.end_value
 
+    #To add border to the pie chart
+    # CustomLabel:
+    #     id: pie_chart_border
+    #     #text: '50'
+    #     foreground_color: (0,0,0,0)
+    #     canvas.before:
+    #         Color:
+    #             rgb: (0, 0, 0, 1)
+    #         Ellipse:
+    #             id: ellipsee
+    #             pos: 100, 160
+    #             size: 210, 210
+    #             angle_start: 0
+    #             angle_end: 360
 
-    Button:
+    Button1:
         id: select_movie
         text: 'Select Movie'
         on_parent: dropdown.dismiss()
-        on_release: dropdown.open(self)
+        on_release: dropdown.open(select_movie)
         size_hint: .8, .1
         pos_hint:  {"center_x": .5, "center_y": .9}
 
-        DropDown:
-            id: dropdown
-            on_select: select_movie.text = '{}'.format(args[1])
+    DropDown:
+        id: dropdown
+        on_select: select_movie.text = '{}'.format(args[1])
 
-            Button:
-                text: 'Joker'
-                size_hint_y: None
-                height: '50dp'
-                on_release: dropdown.select('Joker')
-                on_press: app.process_movies_in('Joker')
+        Button1:
+            text: 'Joker'
+            size_hint_y: None
+            size_hint_x: select_movie.size_hint_x
+            height: '50dp'
+            on_release: dropdown.select('Joker')
+            on_press: app.process_movies_in('Joker')
 
-            Button:
-                text: 'The Shawshank Redemption'
-                size_hint_y: None
-                height: '50dp'
-                on_release: dropdown.select('The Shawshank Redemption')
-                on_press: app.process_movies_in('The Shawshank Redemption')
+        Button1:
+            text: 'The Shawshank Redemption'
+            size_hint_y: None
+            size_hint_x: select_movie.size_hint_x
+            height: '50dp'
+            on_release: dropdown.select('The Shawshank Redemption')
+            on_press: app.process_movies_in('The Shawshank Redemption')
 
-            Button:
-                text: 'The Dark Knight'
-                size_hint_y: None
-                height: '50dp'
-                on_release: dropdown.select('The Dark Knight')
-                on_press: app.process_movies_in('The Dark Knight')
+        Button1:
+            text: 'The Dark Knight'
+            size_hint_y: None
+            size_hint_x: select_movie.size_hint_x
+            height: '50dp'
+            on_release: dropdown.select('The Dark Knight')
+            on_press: app.process_movies_in('The Dark Knight')
 
-            Button:
-                text: 'Avengers Endgame'
-                size_hint_y: None
-                height: '50dp'
-                on_release: dropdown.select('Avengers Endgame')
-                on_press: app.process_movies_in('Avengers Endgame')
+        Button1:
+            text: 'Avengers Endgame'
+            size_hint_y: None
+            size_hint_x: select_movie.size_hint_x
+            height: '50dp'
+            on_release: dropdown.select('Avengers Endgame')
+            on_press: app.process_movies_in('Avengers Endgame')
 
-            Button:
-                text: 'Avengers Infinity War'
-                size_hint_y: None
-                height: '50dp'
-                on_release: dropdown.select('Avengers Infinity War')
-                on_press: app.process_movies_in('Avengers Infinity War')
+        Button1:
+            text: 'Avengers Infinity War'
+            size_hint_y: None
+            size_hint_x: select_movie.size_hint_x
+            height: '50dp'
+            on_release: dropdown.select('Avengers Infinity War')
+            on_press: app.process_movies_in('Avengers Infinity War')
 
-            Button:
-                text: 'Tenet'
-                size_hint_y: None
-                height: '50dp'
-                on_release: dropdown.select('Tenet')
-                on_press: app.process_movies_in('Tenet')
+        Button1:
+            text: 'Tenet'
+            size_hint_y: None
+            size_hint_x: select_movie.size_hint_x
+            height: '50dp'
+            on_release: dropdown.select('Tenet')
+            on_press: app.process_movies_in('Tenet')
 
-            Button:
-                text: 'Parasite'
-                size_hint_y: None
-                height: '50dp'
-                on_release: dropdown.select('Parasite')
-                on_press: app.process_movies_in('Parasite')
+        Button1:
+            text: 'Parasite'
+            size_hint_y: None
+            size_hint_x: select_movie.size_hint_x
+            height: '50dp'
+            on_release: dropdown.select('Parasite')
+            on_press: app.process_movies_in('Parasite')
 
-            Button:
-                text: 'Inception'
-                size_hint_y: None
-                height: '50dp'
-                on_release: dropdown.select('Inception') 
-                on_press: app.process_movies_in('Inception')
+        Button1:
+            text: 'Inception'
+            size_hint_y: None
+            size_hint_x: select_movie.size_hint_x
+            height: '50dp'
+            on_release: dropdown.select('Inception')
+            on_press: app.process_movies_in('Inception')
 
-            Button:
-                text: 'The Lord of the Rings: The Return of the King'
-                size_hint_y: None
-                height: '50dp'
-                on_release: dropdown.select('The Lord of the Rings: The Return of the King') 
-                on_press: app.process_movies_in('The Lord of the Rings: The Return of the King')
+        Button1:
+            text: 'The Lord of the Rings: The Return of the King'
+            size_hint_y: None
+            size_hint_x: select_movie.size_hint_x
+            height: '50dp'
+            on_release: dropdown.select('The Lord of the Rings: The Return of the King')
+            on_press: app.process_movies_in('The Lord of the Rings: The Return of the King')
 
-            Button:
-                text: 'Spider-Man: Far from Home'
-                size_hint_y: None
-                height: '50dp'
-                on_release: dropdown.select('Spider-Man: Far from Home') 
-                on_press: app.process_movies_in('Spider-Man: Far from Home')
+        Button1:
+            text: 'Spider-Man: Far from Home'
+            size_hint_y: None
+            size_hint_x: select_movie.size_hint_x
+            height: '50dp'
+            on_release: dropdown.select('Spider-Man: Far from Home')
+            on_press: app.process_movies_in('Spider-Man: Far from Home')
 
 <CustomLabel>:
 
-            
+<Button1@MDRectangleFlatButton>:
+    md_bg_color: utils.get_color_from_hex('51c4d3')
+    md_fg_color: 0,0,0,1
+    text_color: 1,1,1,1
+    font_size: 20
+    #border: (1,0,0,10)

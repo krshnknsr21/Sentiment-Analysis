@@ -1,14 +1,16 @@
-<Voice_in@Screen>:
+#:import utils kivy.utils
+#utils.get_color_from_hex('9FEBEC')
+<Voice_in@RelativeLayout>:
     id: 'voice_screen'
     canvas.before:
         Color:
             rgb: (160/255,160/255,160/255,1)
         BorderImage:
-            source: 'Images/voice.jpg'
+            source: 'Images/blue.png'
             pos: self.pos
             size: self.size
     # canvas.before:
-    #     
+    #
     #     Rectangle:
     #         size: self.size
     #         pos: self.pos
@@ -19,13 +21,16 @@
             size_hint: .2, .2
             pos_hint: {'center_x': .5, 'center_y': .7}
             background_color: 0,0,0,0
+            on_press: self.size_hint = [.18, .18]
+            on_release: self.size_hint = [.2, .2]
+
             Image:
                 id: my_image
                 source: 'Images/mic.png'
                 center_x: self.parent.center_x
                 center_y: self.parent.center_y
                 size: self.width, self.height
-        
+
 
         Label:
             id: voice_in_label
@@ -38,4 +43,3 @@
             #     Rectangle:
             #         size: self.size
             #         pos: self.pos
-                
