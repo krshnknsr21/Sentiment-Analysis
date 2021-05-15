@@ -13,6 +13,7 @@ from kivy.uix.dropdown import DropDown
 from kivy.properties import ColorProperty, NumericProperty, ListProperty
 from kivy.animation import Animation
 from kivy.uix.textinput import TextInput
+from kivy.metrics import dp
 
 from kivy.uix.label import Label
 
