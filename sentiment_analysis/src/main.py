@@ -3,6 +3,9 @@ kivy.require('2.0.0')
 from Function_Files.Text_Input import Analyzer
 from Function_Files.Movie_Review import MovieReviewAnalyzer
 
+import speech_recognition as sr
+import pyaudio
+
 from kivymd.app import MDApp
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.snackbar import Snackbar
@@ -33,16 +36,35 @@ class AnalyzeApp(MDApp):
         self.theme_cls.primary_palette = "Indigo"
         return Builder.load_file('analyze.kv')
 
+    def process_voice_in(self):
+        r = sr.Recognizer()
+
+        with sr.Microphone() as source:
+            r.adjust_for_ambient_noise(source)
+            self.root.ids.voice_screen.ids.voice_in_label_text.text = "Talk"
+            audio_text = r.listen(source)
+            self.root.ids.voice_screen.ids.voice_in_label_text.text = "Time over, thanks"
+        # recoginize_() method will throw a request error if the API is unreachable, hence using exception handling
+
+        try:
+            text=r.recognize_google(audio_text)
+            self.root.ids.voice_screen.ids.voice_in_label_text.text = 'You said: ' + text
+            analysis = Analyzer.testAnalyze(text)
+            self.root.ids.voice_screen.ids.voice_in_label_analysis.text = analysis
+        except:
+            self.root.ids.voice_screen.ids.voice_in_label_text.text = 'Sorry, coundn\'t hear you properly. Try Again'
+            self.root.ids.voice_screen.ids.voice_in_label_text.analysis = ''
+    
     def process_text_in(self, text):
         text_analysis = Analyzer.testAnalyze(text)
         if(text_analysis == 'Positive'):
-            self.root.ids.text_screen.ids.text_in_label.text = text_analysis
-            self.root.ids.text_screen.ids.text_in_label.rgb_color = 0, 1, 0, 1
+            #self.root.ids.text_screen.ids.text_in_label.color = [0,1,0,1]
+            self.root.ids.text_screen.ids.text_in_label.text = text_analysis     
         elif(text_analysis == 'Negative'):
-            self.root.ids.text_screen.ids.text_in_label.foreground_color = (0,1,0,1)
+            #self.root.ids.text_screen.ids.text_in_label.color = [1,0,0,1]
             self.root.ids.text_screen.ids.text_in_label.text = text_analysis
         else:
-            self.root.ids.text_screen.ids.text_in_label.foreground_color = (0,1,0,1)
+            #self.root.ids.text_screen.ids.text_in_label.rgb__color = [0,1,0,1]
             self.root.ids.text_screen.ids.text_in_label.text = text_analysis
 
     def process_movies_in(self, text):
@@ -80,8 +102,6 @@ class CustomLabel(Label):
     start_value = NumericProperty(0)
     end_value = NumericProperty(0)
 
-class CustomTextLabel(Label):
-    rgb_color = ColorProperty([1,1,1,1])
 
 class CustomTextInput(TextInput):
     border_color = ColorProperty([0, 0, 0, 0])
@@ -109,29 +129,10 @@ class CustomTextInput(TextInput):
             Animation(lower_border_inactive_color=[.5, .5, .5, 0], d=.3).start(self)
             self.hint_text = "Enter Your Sentence Here"
 
-class CustomLabelInput(Label):
-    border_color = ColorProperty([0, 0, 0, 0])
-    rect = ListProperty([0, 0, 0, 0])
-    _foreground_color = ColorProperty([1, 1, 1, 0])
-    lower_border_inactive_color = ColorProperty([.5, .5, .5, 0])
 
-    def _on_label_focused(self, _, active):
-        if active:
-            self.lower_border_inactive_color = [0, 0, 0, 0]
-            self._foreground_color = [1, 1, 1, 1]
-            self.border_color = [28/255, 226/255, 231/255, 1]
-            Animation(
-                d=.3, t='out_bounce',
-                rect=[self.x, self.y, self.width, self.height]
-                ).start(self)
-        else:
-            self.border_color = [0, 0, 0, 0]
-            self.rect = [
-                self.x - dp(10), self.y - dp(10),
-                self.width + dp(20), self.height + dp(20)
-            ]
-            self._foreground_color = [1, 1, 1, 1]
-            Animation(lower_border_inactive_color=[.5, .5, .5, 0], d=.3).start(self)
+class ShadowLabel(Label):
+    decal = ListProperty([0, 0])
+    tint = ListProperty([1, 1, 1, 1])
         
 
 if __name__ == "__main__":
