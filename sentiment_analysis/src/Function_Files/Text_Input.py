@@ -8,7 +8,7 @@ class Analyzer():
             # print("Positive")
             return "Postive"
 
-        elif analysis.sentiment.polarity <= 0.1:
+        elif analysis.sentiment.polarity < 0.0:
             # print("Negative")
             return "Negative"
 
