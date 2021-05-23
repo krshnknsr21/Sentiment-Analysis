@@ -7,8 +7,6 @@ import speech_recognition as sr
 import pyaudio
 
 from kivymd.app import MDApp
-from kivymd.uix.menu import MDDropdownMenu
-from kivymd.uix.snackbar import Snackbar
 from kivy.lang import Builder
 from kivy.uix.widget import Widget
 from kivy.uix.button import Button
@@ -19,15 +17,13 @@ from kivy.properties import ColorProperty, NumericProperty, ListProperty
 from kivy.animation import Animation
 from kivy.uix.textinput import TextInput
 from kivy.metrics import dp
-from kivymd.uix.behaviors import RectangularElevationBehavior, FocusBehavior
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.menu import MDDropdownMenu
-
 from kivy.uix.label import Label
+
 
 Builder.load_file('Kivy_files/text_in.kv') 
 Builder.load_file('Kivy_files/voice_in.kv')
 Builder.load_file('Kivy_files/movies_in.kv')
+
 
 class AnalyzeApp(MDApp):
 
@@ -58,13 +54,12 @@ class AnalyzeApp(MDApp):
     def process_text_in(self, text):
         text_analysis = Analyzer.testAnalyze(text)
         if(text_analysis == 'Positive'):
-            #self.root.ids.text_screen.ids.text_in_label.color = [0,1,0,1]
             self.root.ids.text_screen.ids.text_in_label.text = text_analysis     
+        
         elif(text_analysis == 'Negative'):
-            #self.root.ids.text_screen.ids.text_in_label.color = [1,0,0,1]
             self.root.ids.text_screen.ids.text_in_label.text = text_analysis
+        
         else:
-            #self.root.ids.text_screen.ids.text_in_label.rgb__color = [0,1,0,1]
             self.root.ids.text_screen.ids.text_in_label.text = text_analysis
 
     def process_movies_in(self, text):
